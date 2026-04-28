@@ -13,7 +13,8 @@ set(SOURCES
     main.cpp
     Class/Gui.cpp
     Class/Questoes.cpp
-    Libs/glad/glad.cLibs/imgui/imgui.cpp
+    Libs/glad/glad.c
+    Libs/imgui/imgui.cpp
     Libs/imgui/imgui_draw.cpp
     Libs/imgui/imgui_tables.cpp
     Libs/imgui/imgui_widgets.cpp
