@@ -1,0 +1,41 @@
+cmake_minimum_required(VERSION 3.15)
+project(SistemasVisaoAV1)
+
+# Padrão C++ 17
+set(CMAKE_CXX_STANDARD 17)
+
+# Encontra as bibliotecas (O GitHub vai baixar elas pra gente)
+find_package(OpenCV REQUIRED)
+find_package(glfw3 CONFIG REQUIRED)
+
+# Lista de todos os seus arquivos de código
+set(SOURCES
+    main.cpp
+    Class/Gui.cpp
+    Class/Questoes.cpp
+    glad/glad/glad.c
+    imgui/imgui.cpp
+    imgui/imgui_draw.cpp
+    imgui/imgui_tables.cpp
+    imgui/imgui_widgets.cpp
+    imgui/imgui_impl_glfw.cpp
+    imgui/imgui_impl_opengl3.cpp
+    imgui/imgui_stdlib.cpp
+)
+
+# Cria o executável
+add_executable(${PROJECT_NAME} ${SOURCES})
+
+# Informa ao compilador onde achar os headers (.h)
+target_include_directories(${PROJECT_NAME} PRIVATE 
+    ${CMAKE_SOURCE_DIR} 
+    ${CMAKE_SOURCE_DIR}/glad
+    ${CMAKE_SOURCE_DIR}/imgui
+)
+
+# Linka o OpenCV e o GLFW no seu executável
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    ${OpenCV_LIBS}
+    glfw
+    opengl32
+)

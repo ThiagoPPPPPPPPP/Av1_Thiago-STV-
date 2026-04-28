@@ -1,0 +1,23 @@
+# Arquivos compilados do Linux e Windows
+*.o
+*.a
+*.so
+*.dll
+*.exe
+
+# Pastas de build do CMake (que o GitHub Actions vai usar)
+build/
+out/
+bin/
+
+# A pasta do pacote final que criamos no .yml
+PacoteProfessor/
+
+# Arquivos de sistema do Zorin OS / Windows
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Pastas de configuração do seu editor de código (como VS Code)
+.vscode/
+.idea/*.avi
