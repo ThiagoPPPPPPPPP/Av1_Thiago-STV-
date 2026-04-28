@@ -16,8 +16,8 @@ jobs:
     - name: 2. Instalando OpenCV e GLFW no Windows (Isso pode levar uns 20 min)
       run: |
         vcpkg integrate install
-        vcpkg install opencv[core,highgui,imgproc,videoio]:x64-windows glfw3:x64-windows
-
+        vcpkg install opencv:x64-windows glfw3:x64-windows
+        
     - name: 3. Configurando o Projeto (CMake)
       run: >
         cmake -B build -S . 
