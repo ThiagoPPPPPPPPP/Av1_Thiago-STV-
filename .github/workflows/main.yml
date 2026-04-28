@@ -1,0 +1,40 @@
+name: Compilar para o Professor (Windows)
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch: # Permite rodar manualmente apertando um botão lá no GitHub
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: 1. Baixando o seu codigo
+      uses: actions/checkout@v4
+
+    - name: 2. Instalando OpenCV e GLFW no Windows (Isso pode levar uns 20 min)
+      run: |
+        vcpkg integrate install
+        vcpkg install opencv[core,highgui,imgproc,videoio]:x64-windows glfw3:x64-windows
+
+    - name: 3. Configurando o Projeto (CMake)
+      run: >
+        cmake -B build -S . 
+        -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_INSTALLATION_ROOT\scripts\buildsystems\vcpkg.cmake"
+
+    - name: 4. Compilando o Executavel (.exe)
+      run: cmake --build build --config Release
+
+    - name: 5. Preparando o pacote final para Download
+      run: |
+        mkdir PacoteProfessor
+        copy build\Release\*.exe PacoteProfessor\
+        xcopy Imagens PacoteProfessor\Imagens\ /E /H /C /I
+        copy build\Release\*.dll PacoteProfessor\
+
+    - name: 6. Disponibilizando na aba Actions
+      uses: actions/upload-artifact@v4
+      with:
+        name: AV1_Sistemas_De_Visao_Professor
+        path: PacoteProfessor/
