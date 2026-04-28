@@ -1,3 +1,8 @@
+#ifdef _WIN32
+    #include <windows.h>
+#else
+    #include <unistd.h>
+#endif
 #include "glad/glad/glad.h"
 #include <GLFW/glfw3.h>
 #include "imgui/imgui.h"
@@ -7,7 +12,6 @@
 #include <stdio.h>
 #include <iostream>
 #include <ostream>
-#include <unistd.h>
 #include <limits.h>
 #include <fstream>
 #include <opencv2/opencv.hpp>
