@@ -13,7 +13,7 @@ set(SOURCES
     main.cpp
     Class/Gui.cpp
     Class/Questoes.cpp
-    Libs/glad/glad.c
+    Libs/glad/glad/glad.c
     Libs/imgui/imgui.cpp
     Libs/imgui/imgui_draw.cpp
     Libs/imgui/imgui_tables.cpp
@@ -27,10 +27,12 @@ set(SOURCES
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 # Informa ao compilador onde achar os headers (.h)
+# Coloquei todas as variações de pastas para ele não se perder!
 target_include_directories(${PROJECT_NAME} PRIVATE 
-    ${CMAKE_SOURCE_DIR} 
-    ${CMAKE_SOURCE_DIR}/glad
-    ${CMAKE_SOURCE_DIR}/imgui
+    ${CMAKE_SOURCE_DIR}
+    ${CMAKE_SOURCE_DIR}/Libs
+    ${CMAKE_SOURCE_DIR}/Libs/glad
+    ${CMAKE_SOURCE_DIR}/Libs/imgui
 )
 
 # Linka o OpenCV e o GLFW no seu executável
